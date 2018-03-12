@@ -1,0 +1,91 @@
+// Assignment 6-B: Rainfall Statistics
+
+// Author        : Stephanie Imperial
+
+// Description   : Write a program that lets the user enter the total rainfall for each of
+// 12 months into an array of doubles. The program should calculate and display the total rainfall
+// for the year, the average monthly rainfall, and the highest and lowest amounts of rain.
+// INPUT VALIDATION: DO NOT ACCEPT NEGATIVE NUMBERS FOR MONTHLY RAINFALL FIGURES.
+
+// Status      : Revised and completed
+
+// *************************************************************************
+
+  // Ask user to enter the total rainfall for each of 12 months into an array of doubles.
+    // Calculate and display the total rainfall for the year.
+    // Calculate and display the average monthly rainfall.
+    // Display in inches the highest amount of rainfall. Display the month.
+    // Display in inches the lowest amount of rainfall. Display the month.
+    // Create input validation, do not accept negative numbers for monthly rainfall figures.
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    const int MONTH = 12;
+    string months[MONTH]={"January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"};
+    int rainfall[MONTH];
+
+    // Ask user to enter the total rainfall for each of 12 months into an array of doubles.
+    cout << "Enter the total rainfall in inches for each of the 12 months. " << endl << endl;
+    for (int index = 0; index < MONTH; index++)
+    {
+        cout << "Enter the rainfall in inches for the month of " << months[index] << "::  ";
+        cin >> rainfall[index];
+    }
+
+    // Calculate and display the TOTAL rainfall for the year.
+    float total = 0;
+
+    for (int i = 0; i < MONTH; i++)
+    {
+        total = total + rainfall[i];
+    }
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "\nThe total amount of rainfall for the year is, " << total << " inches." << endl;
+
+    // Calculate and display the AVERAGE monthly rainfall.
+    float average;
+    average = total / 12;
+    cout << setprecision(2) << fixed << showpoint;
+    cout << "The yearly average of rainfall in the past 12 months is, " << average << " inches." << endl;
+
+    // Display the month with the HIGHEST amount of rainfall.
+    int count;
+    int highest;
+    int highestIndex = 0;
+
+    highest = rainfall[0];
+    for (count = 1; count < MONTH; count++)
+    {
+        if (rainfall[count] > highest)
+        {
+            highest = rainfall[count];
+            highestIndex = count;
+        }
+    }
+    cout << "\nThe highest amount of rainfall is: " << rainfall[highestIndex] << " inches." << endl;
+    cout << "The highest rainfall occured in the month of " << months[highestIndex] << endl << endl;
+
+    // Display the month with the LOWEST amount of rainfall.
+    int lowest;
+    lowest = rainfall[0];
+    int lowestIndex = 0;
+    for (count = 1; count < MONTH; count ++)
+    {
+        if (rainfall[count] < lowest)
+        {
+            lowest = rainfall[count];
+            lowestIndex = count;
+        }
+    }
+    cout << "\nThe lowest amount of rainfall is: "
+    << rainfall[lowestIndex] << " inches." << endl;
+    cout << "The lowest rainfall occured in the month of " << months[lowestIndex] << endl << endl;
+
+    return 0;
+
+}
